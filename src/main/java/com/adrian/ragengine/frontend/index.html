@@ -1,0 +1,51 @@
+<html>
+<head>
+    <script>
+        async function getData() {
+            const url = "http://localhost:8080/home/print/test";
+            var result = "EMPTY"
+
+            try {
+                const response = await fetch(url);
+                if (response.ok == false) {
+                    throw new Error('Response status: ' + response.status);
+                }
+
+                result = await response.text();
+            } catch (error) {
+                console.error("EXCEPTION: " + error.message)
+            }
+
+            alert(result);
+        }
+    </script>
+</head>
+<body>
+<form action="http://localhost:8080/home/post" method="POST">
+    <table>
+        <tr>
+            <td>
+                <label for="titleInput">Title:</label>
+            </td>
+            <td>
+                <input id="titleInput" name="titleInput" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="bodyInput">Message:</label>
+            </td>
+            <td>
+                <textarea id="bodyInput" name="bodyInput"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Submit">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
